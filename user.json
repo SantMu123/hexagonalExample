@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "66d6f025574aa24e82d65526"
+  },
+  "nombre": "Guiller",
+  "nickname": "Guiller02",
+  "pwd": "pasword123",
+  "rol": "admin",
+  "ciudad": {
+    "$oid": "66d6f185574aa24e82d6552a"
+  }
+},
+{
+  "_id": {
+    "$oid": "66d6f070574aa24e82d65527"
+  },
+  "nombre": "Alejandra",
+  "nickname": "aleja23",
+  "pwd": "pasword234",
+  "rol": "cliente",
+  "ciudad": {
+    "$oid": "66d6f190574aa24e82d6552b"
+  },
+  "fecha": "2/2/2023"
+},
+{
+  "_id": {
+    "$oid": "66d6f0b6574aa24e82d65528"
+  },
+  "nombre": "Kara",
+  "nickname": "kar13",
+  "pwd": "pasword344",
+  "rol": "cliente",
+  "ciudad ": "66d6f199574aa24e82d6552c",
+  "fecha": "3/3/2024"
+}]

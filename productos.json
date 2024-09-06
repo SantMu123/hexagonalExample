@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "66d6f2ad574aa24e82d6552d"
+  },
+  "nombre": "biciclieta BME -14",
+  "categoria": "bicicletas",
+  "Idproveedor": {
+    "$oid": "66d6f162574aa24e82d65529"
+  },
+  "cantidad": 15,
+  "precio": 800000,
+  "fecha": "01/02/2023"
+},
+{
+  "_id": {
+    "$oid": "66d6f2faa8f6af8a96b4d019"
+  },
+  "nombre": "biciclieta tx -7",
+  "categoria": "bicicletas",
+  "Idproveedor": {
+    "$oid": "66d6fc72a8f6af8a96b4d038"
+  },
+  "cantidad": 3,
+  "precio": 50,
+  "fecha": "03/04/2024"
+},
+{
+  "_id": {
+    "$oid": "66d70279a8f6af8a96b4d042"
+  },
+  "nombre": "pedal",
+  "categoria": "repuestos",
+  "Idproveedor": {
+    "$oid": "66d6fc72a8f6af8a96b4d038"
+  },
+  "cantidad": "50",
+  "precio": 100,
+  "fecha": "01/08/2024"
+},
+{
+  "_id": {
+    "$oid": "66db78d9517fc1e7da74b109"
+  },
+  "nombre": "Sillin BMX",
+  "categoria": "bicicletas",
+  "cantidad": 15,
+  "Precio": 8000
+}]
