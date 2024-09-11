@@ -31,6 +31,19 @@ class UserController {
         }
     }
 
+    async verifyUser(req, res) {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() })
+            const token = await this.userService.getUserByNickAndPassword(req.body);
+            res.cookie(req.body.nick, token, {maxAge: process.env.EXPRESS_EXPIRE}).json(token)
+            // res.status(201).json(user);
+        } catch (error) {
+            const errorObj = JSON.parse(error.message)
+            res.status(errorObj.status).json({message: errorObj.message})
+        }
+    }
+
     async updateUser(req, res) {
         try {
             const errors = validationResult(req);
@@ -69,3 +82,6 @@ class UserController {
 }
 
 module.exports = UserController;
+
+
+

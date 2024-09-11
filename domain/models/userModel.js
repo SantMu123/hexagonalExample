@@ -15,6 +15,13 @@ class User{
         const res = await collection.insertMany([userData]);
         return res;
     }
+    async userString(userData){
+        // Si existe un JSON Schema en la base de datos de MongoDB, es necesario agregar un manejador de errores con try-catch. En el domain/repositories/userRepository.js debe devolver el código de error correspondiente.
+        let obj = ConnectToDatabase.instanceConnect;
+        const collection = obj.db.collection('user');
+        const res = await collection.insertMany([userData]);
+        return res;
+    }
     async findByIdAndUpdate(id, updateData, upsert){
         // Si existe un JSON Schema en la base de datos de MongoDB, es necesario agregar un manejador de errores con try-catch. En el domain/repositories/userRepository.js debe devolver el código de error correspondiente.
         let obj = ConnectToDatabase.instanceConnect;
