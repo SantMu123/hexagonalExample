@@ -19,10 +19,28 @@ class UserController {
         }
     }
 
+    async getUserbyNick(nick) {
+        try {
+            const user = await this.userService.getUserbyNick(nick);
+            return user
+        } catch (error) {
+            const errorObj = JSON.parse(error.message);
+            return errorObj
+        }
+    }
+
     async createUser(req, res) {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+            const  {password} = req.body;
+            const hashedPassword = await bcrypt.hash(password, 10);
+            req.body.password = hashedPassword;
+
+            // //validar que el nuevo usuario no exista aun.
+            const usuarioExiste = await this.userExiste(req.body)
+            if (usuarioExiste) return res.status(usuarioExiste?.status).json({message:usuarioExiste?.message, fieldDuplicate: usuarioExiste?.field});
             const user = await this.userService.createUser(req.body);
             res.status(201).json(user);
         } catch (error) {
@@ -77,6 +95,31 @@ class UserController {
             res.json(users);
         } catch (error) {
             res.status(500).json({ message: error.message });
+        }
+    }
+
+    async login(req, res){
+        try {
+            
+            const {nick, password}= req.body;
+            const userExiste = await this.getUserbyNick(nick)
+                       
+            if (userExiste?.status === 404) return res.status(404).json({message: "Usuario no encontrado"})
+            
+            const isMatch = await bcrypt.compare(password, userExiste?.password);
+            if (!isMatch) return res.status(400).json({message: "Contraseña incorrecta"})
+            
+            const token = jwt.sign(
+                {userName : userExiste?.nick},
+                process.env.JWT_SECRET, 
+                {expiresIn: process.env.VITE_EXPRESS_EXPIRE}
+            );
+
+            req.session.token = `Bearer ${token}`;
+            res.status(200).json({menssage: 'login successful'})
+            
+        } catch (error) {
+
         }
     }
 }
